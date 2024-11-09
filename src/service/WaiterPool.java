@@ -81,3 +81,22 @@ public class WaiterPool {
     }
 
 }
+
+/*
+Đây là cách thức hoạt động của waitingUntilWaiterAvailable:
+
+Kiểm tra trạng thái chờ:
+
+waiting.get() kiểm tra xem có luồng nào đang chờ (waiting) hay không.
+Nếu waiting.get() trả về true, nghĩa là đã có luồng khác đang trong trạng thái chờ, do đó, phương thức sẽ đặt lại waiting thành false và ném ra ngoại lệ WaiterNotFoundException. Ngoại lệ này thông báo rằng hiện không có nhân viên nào rảnh để phục vụ khách hàng.
+Thiết lập trạng thái chờ:
+
+Nếu waiting.get() trả về false, nghĩa là chưa có luồng nào chờ, waiting.set(true) được gọi để thiết lập trạng thái chờ. Từ đây, khách hàng sẽ phải chờ một khoảng thời gian nhất định để có thể thử lấy nhân viên phục vụ lại.
+Chờ trong khoảng thời gian cố định:
+
+waiting(EXPIRED_TIME_IN_MILESECOND) gọi đến phương thức waiting(long numberOfSecond) với giá trị EXPIRED_TIME_IN_MILESECOND (1200 milliseconds) để đưa luồng vào trạng thái ngủ trong khoảng thời gian 1200ms.
+Trong thời gian này, nếu có nhân viên phục vụ được giải phóng (release), trạng thái sẽ thay đổi và khách hàng có thể tiếp tục được phục vụ.
+Giải phóng trạng thái chờ khi có ngoại lệ:
+
+Nếu không có nhân viên nào được giải phóng trong thời gian chờ 1200ms, WaiterNotFoundException sẽ thông báo rằng không có nhân viên phục vụ nào rảnh vào lúc này.
+ */

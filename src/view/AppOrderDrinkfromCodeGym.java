@@ -2,6 +2,8 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.ClientThread;
 import service.WaiterPool;
 import controller.ReadOrderRequestsDataFromFileTxt;
 import controller.PrintInvoicefromTxt;
@@ -22,8 +24,19 @@ public class AppOrderDrinkfromCodeGym {
 
 
         // Tạo hóa đơn riêng lẻ cho từng khách hàng
-        PrintInvoicefromTxt.printInvoicefromTxt(clientNames,drinkNames,moneyNames,NUM_OF_CLIENT,waiterPool);
+        for (int i = 0; i < NUM_OF_CLIENT; i++) {
 
+            String clientName = clientNames.get(i);
+            String drinkName = drinkNames.get(i);
+            String moneyName = moneyNames.get(i);
+            PrintInvoicefromTxt.printInvoicefromTxt(clientName,drinkName,moneyName);
+
+
+            // Tạo và chạy thread cho từng khách hàng
+            Runnable client = new ClientThread(waiterPool, clientName, drinkName, moneyName);
+            Thread thread = new Thread(client);
+            thread.start();
+        }
 
 
     }
