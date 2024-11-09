@@ -59,6 +59,8 @@ public class AppOrderDrinkfromCodeGym {
                     System.out.println("Dữ liệu đã được đọc xong!");
                     break;
                 case 2:
+
+
                     // Hiển thị dữ liệu đã đọc từ file
 
                     System.out.println("Đang tải dữ liệu để hiện thị lên hệ thống....");
@@ -77,26 +79,26 @@ public class AppOrderDrinkfromCodeGym {
                     break;
                 case 3:
 
-
-                    System.out.println("-----------------------------------\n**Giải thích quá trình**: \n-----------------------------------\n");
-
-
+                    System.out.println("======================================================================================");
+                    System.out.println("DANH SÁCH NHỮNG KHÁCH HÀNG ĐANG GỌI MÓN HIỆN TẠI, TRIỆU TẬP NHÂN VIÊN ĐỂ PHỤC VỤ HỌ!!");
+                    System.out.println("======================================================================================");
                     // Tạo và chạy thread cho từng khách hàng
-                    System.out.println("Đang tạo và chạy luồng cho khách hàng...");
                     List<Thread> threads = new ArrayList<>(); // Tạo danh sách để lưu trữ các luồng khách hàng
                     for (int i = 0; i < NUM_OF_CLIENT; i++) {
                         String clientName = clientNames.get(i);
                         String drinkName = drinkNames.get(i);
                         String moneyName = moneyNames.get(i);
 
+
+
                         Runnable client = new ClientThread(waiterPool, clientName, drinkName, moneyName);
                         Thread thread = new Thread(client);
                         threads.add(thread); // Thêm luồng vào danh sách
-
                         thread.start();
 
                     }
 
+                    WaiterPool.waitingForWaiterToArriveStatus();
 
                     // Chờ cho tất cả các luồng hoàn thành trước khi tiếp tục
                     for (Thread thread : threads) {
@@ -106,16 +108,16 @@ public class AppOrderDrinkfromCodeGym {
                             e.printStackTrace();
                         }
                     }
-
-                    System.out.println("****Tất cả các luồng khách hàng đã hoàn tất****.");
-
-
+                    System.out.println("#############################################################################################");
+                    System.out.println("TẤT CẢ CÁC LUỒNG KHÁCH HÀNG HIỆN TẠI ĐÃ ĐƯỢC PHỤC VỤ, HÃY IN HÓA ĐƠN ĐỂ YÊU CẦU THANH TOÁN. #");
+                    System.out.println("#############################################################################################");
 
                     break;
 
 
                 case 4:
-                    System.out.println("-----------------------------------\n**Giải thích quá trình**: In hoá đơn ra file văn bản txt  \n-----------------------------------\n");
+
+
                     System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
 
 
@@ -131,13 +133,13 @@ public class AppOrderDrinkfromCodeGym {
 
                     // Quá trình "chờ ảo" (fake waiting)
                     try {
-                        Thread.sleep(100); // Chờ trong 12 giây (12000 milliseconds)
+                        Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
                     } catch (InterruptedException e) {
                         e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
                     }
 
 
-                    System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!!\n");
+                    System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!");
                     // Thoát chương trình
 
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
@@ -150,6 +152,8 @@ public class AppOrderDrinkfromCodeGym {
 
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+
+
             }
 
 

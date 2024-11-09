@@ -3,6 +3,7 @@ package service;
 import utils.exception.WaiterNotFoundException;
 import model.WaiterInServer;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,23 +39,27 @@ public class WaiterPool {
     public synchronized void release(WaiterInServer waiter)  {
         inUse.remove(waiter);
         available.add(waiter);
+        waiting(2000); //tạo đổ trễ trong quá trình phục vụ
         System.out.println(waiter.getNameWaiter() + " đang rảnh và có thể chạy bàn.");
     }
 
     private WaiterInServer createWaiter() {
+
+
+
+
         String[] nameWaiter = {
                 "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
                 "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc"
         };
-        waiting(200);
-
         // Lấy tên nhân viên từ mảng nameWaiter theo chỉ số
+
         int index = count.incrementAndGet() - 1;  // Giả sử count là một AtomicInteger, giúp đếm số nhân viên
         String waiterName = nameWaiter[index];  // Lấy tên của nhân viên theo chỉ số
-
+        waiting(6000);
 
         WaiterInServer waiter = new WaiterInServer("Nhân viên phục vụ " + waiterName); //TRuyen nhan vien boi ban cua HIgland vao
-        System.out.println(waiter.getNameWaiter() + " đã được triệu tập!!");
+        System.out.println(waiter.getNameWaiter() + " đã tới quán!!");
         return waiter;
     }
 
@@ -79,6 +84,55 @@ public class WaiterPool {
             Thread.currentThread().interrupt(); // gửi tín hiệu ngắt (interrupt) tới chính luồng hiện tại. Khi gọi phương thức này, nó đánh dấu luồng hiện tại là bị "ngắt" (interrupted), nhưng không tự động dừng luồng đó.
         }
     }
+
+
+
+
+    //Phương thức đóng vai trò không quan trọng và không làm ảnh hưởng đến WaiterPool
+    public static void waitingForWaiterToArriveStatus() {
+
+        // Quá trình "chờ ảo" (fake waiting)
+        try {
+            Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
+        } catch (InterruptedException e) {
+            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+        }
+        System.out.println("============================================================================================.");
+        System.out.println("Đang thực hiện quá trình gửi mail tự động yêu cầu toàn bộ nhân viên tập trung tại quán....");
+
+
+
+        // Quá trình "chờ ảo" (fake waiting)
+        try {
+            Thread.sleep(1000); // Chờ trong 12 giây (12000 milliseconds)
+        } catch (InterruptedException e) {
+            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+        }
+        System.out.println("==========================================================");
+        System.out.println("Mail triệu tập đã được gửi đi thành công!! \uD83D\uDCBC");
+        System.out.println("==========================================================");
+        System.out.println("Tất cả nhân viên đang trên đường tới quán \uD83D\uDE97\uD83D\uDE95\uD83D\uDEB2 ------loading-----");
+        System.out.println("==========================================================");
+        // Quá trình "chờ ảo" (fake waiting)
+        try {
+            Thread.sleep(5000); // Chờ trong 12 giây (12000 milliseconds)
+        } catch (InterruptedException e) {
+            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+        }
+
+        System.out.println("==========================================================");
+        System.out.println("Đào Văn Huy Hưng xin phép đến muộn 15 phút vì phải đi sinh nhật\uD83C\uDF81  ");
+        System.out.println("Hoàng Minh Nhật xin phép đến muộn 15 phút vì phải đi concert\uD83D\uDD25 ");
+
+        // Quá trình "chờ ảo" (fake waiting)
+        try {
+            Thread.sleep(20000); // Chờ trong 12 giây (12000 milliseconds)
+        } catch (InterruptedException e) {
+            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+        }
+    }
+
+
 
 }
 

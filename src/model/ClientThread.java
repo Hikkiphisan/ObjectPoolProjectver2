@@ -29,13 +29,14 @@ public class ClientThread implements Runnable {
             System.out.println("Khách hàng " + clientName + " vừa mới gọi món " + drinkName + " với giá tiền là " + moneyName + "!");
 
             WaiterInServer waiter = waiterPool.getWaiter();
-
-            TimeUnit.MILLISECONDS.sleep(randomInt(1000,1500));
+            TimeUnit.MILLISECONDS.sleep(randomInt(4000,10000));
             waiterPool.release(waiter);
             System.out.println("Vị khách hàng tên là " + clientName + " đã được phục vụ!");
         } catch (InterruptedException | WaiterNotFoundException e) {
             System.out.println("Vị khách " + clientName + " sẽ phải chờ đợi một lúc.");
         }
+
+        System.out.println("======================Luồng/" + Thread.currentThread().getName() + "==============================");
     }
 
 
