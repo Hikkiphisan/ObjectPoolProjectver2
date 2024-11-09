@@ -1,15 +1,11 @@
 package controller;
 
-import model.ClientThread;
-import service.WaiterPool;
-
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
-public class PrintInvoicefromTxt {
-    public static void printInvoicefromTxt(String clientName, String drinkName, String moneyName) {
+public class PrintInvoiceToTxt {
+    public static void printInvoiceToTxt(String clientName, String drinkName, String moneyName) {
 
             // Tên file hóa đơn cho từng khách hàng
             String fileName = String.format("D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\Hoá đơn của vị khách %s.txt", clientName);
