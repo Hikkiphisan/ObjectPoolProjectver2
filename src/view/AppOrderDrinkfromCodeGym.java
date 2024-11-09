@@ -1,10 +1,12 @@
 package view;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import controller.DisplayDataFromFileTxt;
+import controller.DisplayMenuAgain;
 import model.ClientThread;
 import service.WaiterPool;
 import controller.ReadOrderRequestsDataFromFileTxt;
@@ -27,9 +29,10 @@ public class AppOrderDrinkfromCodeGym {
         while (running) {
             System.out.println("========= MENU =========");
             System.out.println("1. Đọc dữ liệu đơn hàng từ file");
-            System.out.println("2. Tạo và chạy luồng cho khách hàng");
-            System.out.println("3. In hóa đơn cho khách hàng");
-            System.out.println("4. Thoát chương trình");
+            System.out.println("2. Hiển thị dữ liệu đã được đọc từ file văn bản");
+            System.out.println("3. Tạo và chạy luồng cho khách hàng");
+            System.out.println("4. In hóa đơn cho khách hàng");
+            System.out.println("5. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
@@ -46,7 +49,7 @@ public class AppOrderDrinkfromCodeGym {
 
                     // Quá trình "chờ ảo" (fake waiting)
                     try {
-                        Thread.sleep(12000); // Chờ trong 12 giây (12000 milliseconds)
+                        Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
                     } catch (InterruptedException e) {
                         e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
                     }
@@ -57,12 +60,30 @@ public class AppOrderDrinkfromCodeGym {
                     break;
                 case 2:
                     // Hiển thị dữ liệu đã đọc từ file
+
+                    System.out.println("Đang tải dữ liệu để hiện thị lên hệ thống....");
+
+                    // Quá trình "chờ ảo" (fake waiting)
+                    try {
+                        Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+                    }
+
+
+
                     System.out.println("Dữ liệu đã đọc từ file văn bản:");
                     DisplayDataFromFileTxt.displayDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     break;
                 case 3:
+
+
+                    System.out.println("-----------------------------------\n**Giải thích quá trình**: \n-----------------------------------\n");
+
+
                     // Tạo và chạy thread cho từng khách hàng
                     System.out.println("Đang tạo và chạy luồng cho khách hàng...");
+                    List<Thread> threads = new ArrayList<>(); // Tạo danh sách để lưu trữ các luồng khách hàng
                     for (int i = 0; i < NUM_OF_CLIENT; i++) {
                         String clientName = clientNames.get(i);
                         String drinkName = drinkNames.get(i);
@@ -70,11 +91,35 @@ public class AppOrderDrinkfromCodeGym {
 
                         Runnable client = new ClientThread(waiterPool, clientName, drinkName, moneyName);
                         Thread thread = new Thread(client);
+                        threads.add(thread); // Thêm luồng vào danh sách
+
                         thread.start();
 
                     }
+
+
+                    // Chờ cho tất cả các luồng hoàn thành trước khi tiếp tục
+                    for (Thread thread : threads) {
+                        try {
+                            thread.join(); // Đợi luồng hoàn tất
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    System.out.println("****Tất cả các luồng khách hàng đã hoàn tất****.");
+
+
+
                     break;
+
+
                 case 4:
+                    System.out.println("-----------------------------------\n**Giải thích quá trình**: In hoá đơn ra file văn bản txt  \n-----------------------------------\n");
+                    System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
+
+
+
                     // In hóa đơn riêng lẻ cho từng khách hàng
                     for (int i = 0; i < NUM_OF_CLIENT; i++) {
                         String clientName = clientNames.get(i);
@@ -83,6 +128,19 @@ public class AppOrderDrinkfromCodeGym {
                         PrintInvoiceToTxt.printInvoiceToTxt(clientName, drinkName, moneyName);
 
                     }
+
+                    // Quá trình "chờ ảo" (fake waiting)
+                    try {
+                        Thread.sleep(100); // Chờ trong 12 giây (12000 milliseconds)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+                    }
+
+
+                    System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!!\n");
+                    // Thoát chương trình
+
+                    running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
                 case 5:
                     // Thoát chương trình
