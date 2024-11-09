@@ -49,3 +49,16 @@ Vị khách thứ 234 là Nguyễn Khắc Nhật đã bước vào quán và ng�
 Mục đích đến quán: Gặp đối tác, Thời gian vào quán: 10:00, Số điện thoại: 0987654321, Yêu cầu đặc biệt: Thêm ít đá, Thanh toán bằng thẻ tín dụng, Ngồi gần cửa sổ.
 Nguyễn Khắc Nhật, Capuchino, 99.000
 -----------------------------------------------------------------------
+
+Vị khách thứ 235 là Trương Đặng Vũ đã bước vào quán và ngồi được 17 phút, mặc áo đỏ, là khách VIP đi xe Mercedes, vị khách yêu cầu thêm thật nhiều đường.
+Mục đích đến quán: Gặp nhà tuyển dng, Thời gian vào quán: 10:14, Số điện thoại: 0987654321, Yêu cầu đặc biệt: Thêm ít đá, Thanh toán bằng thẻ tín dụng, Ngồi gần ban công.
+Trương Đặng Vũ Linh, Trà Đào Cam Sả, 23.000
+
+-------------------------------------------------------------------------
+Vị khách thứ 236 là Nguyễn Minh Đạo đã bước vào quán và ngồi được 17 phút, mặc áo xanh tím vàng, là khách thường đi xe KIA Morning, vị khách yêu cầu thêm ít món ăn nhẹ đi kèm.
+Mục đích đến quán: Gặp nhà tuyển dng, Thời gian vào quán: 10:14, Số điện thoại: 0987654321, Yêu cầu đặc biệt: Thêm ít đường, topping Trân Châu, Thanh toán bằng quét mã QR, Ngồi gần cầu thang lên tầng 2.
+Nguyễn Minh Đạo, Trà Tắc, 79.000
+-------------------------------------------------------------------------
+Vị khách thứ 237 là Hà Bảo Ân đã bước vào quán và ngồi được 19 phút, mặc áo đỏ, là khách VIP đi xe Mercedes, vị khách yêu cầu thêm thật nhiều đường.
+Mục đích đến quán: Gặp gia đình, Thời gian vào quán: 10:20, Số điện thoại: 0988654321, Yêu cầu đặc biệt: Thêm ít đá, Thanh toán bằng thẻ tín dụng, Ngồi gần ban công.
+Hà Bảo Ân, Phidi Choco, 67.000

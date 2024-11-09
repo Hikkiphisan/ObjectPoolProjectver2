@@ -2,8 +2,8 @@ package model;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import Object.WaiterPool;
-import Object.WaiterNotFoundException;
+import service.WaiterPool;
+import utils.exception.WaiterNotFoundException;
 
 public class ClientThread implements Runnable {
     private WaiterPool waiterPool;

@@ -1,5 +1,6 @@
-package Object;
+package service;
 
+import utils.exception.WaiterNotFoundException;
 import model.WaiterInServer;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class WaiterPool {
     private static final long EXPIRED_TIME_IN_MILESECOND = 1200;
-    private static final long NUMBER_OF_WAITER = 7;
+    private static final long NUMBER_OF_WAITER = 9;
 
     private final List<WaiterInServer> available = Collections.synchronizedList(new ArrayList<>());
     private final List<WaiterInServer> inUse = Collections.synchronizedList(new ArrayList<>());
@@ -43,7 +44,7 @@ public class WaiterPool {
     private WaiterInServer createWaiter() {
         String[] nameWaiter = {
                 "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
-                "Hoàng Minh Nhật", "Thành"
+                "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc"
         };
         waiting(200);
 
