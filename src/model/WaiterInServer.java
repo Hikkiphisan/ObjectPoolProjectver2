@@ -1,25 +1,34 @@
 package model;
 
-public class WaiterInServer {
-    private String nameWaiter;
+public class WaiterInServer extends Person {
+    public int age;
+    public int  workexperiencelength;
+    public WaiterInServer(int id,String name, int age, int workexperiencelength ) {
+        super(id, name);
+        this.age = age;
+        this.workexperiencelength = workexperiencelength;
+    }
+
+    public WaiterInServer(String name) {
+        super(0, name);
+    }
+
+
 
     public String getNameWaiter() {
-        return nameWaiter;
+        return name;
     }
 
-    public void setNameWaiter(String nameWaiter) {
-        this.nameWaiter = nameWaiter;
+    public void setNameWaiter(String name) {
+        this.name = name;
     }
 
-    public WaiterInServer(String nameWaiter) {
-        super();
-        this.nameWaiter = nameWaiter;
-    }
+
 
     @Override
     public String toString() {
         return "Model.WaiterInServer{" +
-                "nameWaiter='" + nameWaiter + '\'' +
+                "nameWaiter='" + name + '\'' +
                 '}';
     }
 }
