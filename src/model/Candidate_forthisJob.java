@@ -19,6 +19,12 @@ public class Candidate_forthisJob extends Person {
         this.experiences = experiences;
     }
 
+    // Phương thức để lấy số năm kinh nghiệm dưới dạng số nguyên
+    public int getExperienceAsInt() {
+        String experience = this.experiences.replaceAll("[^0-9]", ""); // Giữ lại các ký tự số
+        return Integer.parseInt(experience); // Chuyển chuỗi thành số nguyên
+    }
+
     public String getCertifications() {
         return certifications;
     }

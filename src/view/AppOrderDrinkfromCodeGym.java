@@ -10,19 +10,41 @@ import model.Candidate_forthisJob;
 import model.ClientThread;
 import service.WaiterPool;
 
+import static controller.Login.login;
+
 public class AppOrderDrinkfromCodeGym {
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
     static List<Candidate_forthisJob> candidates;
 
 
+    // Thông tin tài khoản và mật khẩu
+    public static final String USERNAME = "admin123";
+    public static final String PASSWORD = "******";
+
+
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+
+        // Đăng nhập
+        Scanner scanner = null;
+        scanner = new Scanner(System.in);
+
+
+        if (!login(scanner)) {
+            System.out.println("Đăng nhập thất bại. Thoát chương trình.");
+            return;
+        } else {
+            System.out.println("Đăng nhập thành công!");
+        }
+
+
         WaiterPool waiterPool = new WaiterPool();
 
 
         List<String> clientNames = new ArrayList<>();
         List<String> drinkNames = new ArrayList<>();
         List<String> moneyNames = new ArrayList<>();
+
 
         boolean running = true;
 
@@ -89,7 +111,6 @@ public class AppOrderDrinkfromCodeGym {
                     }
 
 
-
                     System.out.println("Dữ liệu đã đọc từ file văn bản:");
                     DisplayDataFromFileTxt.displayDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     break;
@@ -104,7 +125,6 @@ public class AppOrderDrinkfromCodeGym {
                         String clientName = clientNames.get(i);
                         String drinkName = drinkNames.get(i);
                         String moneyName = moneyNames.get(i);
-
 
 
                         Runnable client = new ClientThread(waiterPool, clientName, drinkName, moneyName);
@@ -134,7 +154,6 @@ public class AppOrderDrinkfromCodeGym {
                 case 7:
 
                     System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
-
 
 
                     // In hóa đơn riêng lẻ cho từng khách hàng
@@ -168,19 +187,11 @@ public class AppOrderDrinkfromCodeGym {
                     break;
 
 
-
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
 
 
             }
-
-
-
-
-
-
-
 
 
         }
