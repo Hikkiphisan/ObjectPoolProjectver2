@@ -50,8 +50,8 @@ public class Candidate_forthisJob extends Person {
 
     public String toEditedString() {
         return "Hồ sơ xin việc của " + this.name + " được ưu tiên thứ " + this.priority + " vì có " +
-                this.getExperienceAsInt() + " năm kinh nghiệm trong nghề và có chứng chỉ: " +
-                String.join(", ", this.certifications);
+                this.getExperienceAsInt() + " năm kinh nghiệm trong nghề và có chứng chí " + this.getCertifications()  ;
+
     }
 
 }

@@ -32,9 +32,16 @@ public class AppOrderDrinkfromCodeGym {
 
 
         if (!login(scanner)) {
-            System.out.println("Đăng nhập thất bại. Thoát chương trình.");
+            System.out.println("Đăng nhập thất bại....");
             return;
         } else {
+            System.out.println("Đang tải dữ liệu để chạy ứng dụng....");
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             System.out.println("Đăng nhập thành công!");
         }
 
@@ -75,12 +82,49 @@ public class AppOrderDrinkfromCodeGym {
                     break;
                 case 2:
                     System.out.println("=================================================================================================================");
-                    System.out.println("LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG, CHỈ LẤY NHỮNG ỨNG VIÊN CÓ 3 NĂM KINH NGHIỆM TRỞ LÊN, CÓ CHỨNG CHỈ IELTS, TOEIC, ...");
+                    System.out.println("ĐANG LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG. XIN VUI LÒNG CHỜ ĐỢI....");
+
+
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println("=================================================================================================================");
+                    System.out.println("ĐÃ LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG, CHỈ LẤY NHỮNG ỨNG VIÊN CÓ 3 NĂM KINH NGHIỆM TRỞ LÊN, CÓ CHỨNG CHỈ IELTS, TOEIC, ...");
                     System.out.println("=================================================================================================================");
                     filteredCandidates = FilterbyRegex.filterCandidates(candidates);
                     break;
                 case 3:
+
+                    System.out.println("=================================================================================================================");
+                    System.out.println("ĐANG LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG THEO THỨ TỰ ƯU TIÊN...");
+                    System.out.println("=================================================================================================================");
+                    try {
+                        Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+                    }
+
                     sortedCandidates = BubbleSort.bubbleSortByExperience(filteredCandidates);
+                    System.out.println("=================================================================================================================");
+                    System.out.println("Sau khi vượt qua vòng phỏng vấn, ứng viên được chọn là:");
+                    Scanner scannerChoice = new Scanner(System.in);
+                    int selectedIndex = scannerChoice.nextInt();
+                    System.out.print("Lý do: ");
+                    scannerChoice.nextLine();
+
+
+                    if (selectedIndex >= 1 && selectedIndex <= sortedCandidates.size()) {
+                        Candidate_forthisJob selectedCandidate = sortedCandidates.get(selectedIndex - 1); // -1 vì danh sách bắt đầu từ chỉ số 0
+                        System.out.println(selectedCandidate.toString() + " đã được bạn tuyển vào!! Hãy gửi mail chúc mừng người ấy!");
+                    } else {
+                        System.out.println("Không có ứng viên đó trong danh sách đã được lọc.");
+                    }
+
+
+
                     break;
                 case 4:
                     // Đọc thông tin khách hàng từ file gọi món
