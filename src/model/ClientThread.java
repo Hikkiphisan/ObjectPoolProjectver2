@@ -14,7 +14,7 @@ public class ClientThread extends Person implements Runnable {
     private LocalTime customerWaitingTime;  //Thời gian khách phải chờ đợi, , ưu tiên phục vụ những khách này trước sau khi sắp xếp thứ tự ưu tiên phục vụ.
 
     public ClientThread(WaiterPool waiterPool, String name, String drinkName, String moneyName) {
-        super(0, name);
+        super(String.valueOf(0), name);
         this.waiterPool = waiterPool;
         this.drinkName = drinkName;
         this.moneyName = moneyName;
@@ -23,7 +23,7 @@ public class ClientThread extends Person implements Runnable {
     public ClientThread(String name, String drinkName, int customerArrivalOrder, LocalTime customerWaitingTime ) {
        // PPhương thức sẽ được sử dụng để sắp xếp khách tới quán để ưu tiên phục vụ
 
-        super(0, name);
+        super(String.valueOf(0), name);
         this.drinkName = drinkName;
         this.customerArrivalOrder = customerArrivalOrder;
         this.customerWaitingTime = customerWaitingTime;

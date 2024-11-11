@@ -1,16 +1,18 @@
 package model;
 
+import static java.lang.Integer.parseInt;
+
 public class WaiterInServer extends Person {
     public int age;
     public int  workexperiencelength;
-    public WaiterInServer(int id,String name, int age, int workexperiencelength ) {
+    public WaiterInServer(String id, String name, int age, int workexperiencelength ) {
         super(id, name);
         this.age = age;
         this.workexperiencelength = workexperiencelength;
     }
 
     public WaiterInServer(String name) {
-        super(0, name);
+        super(String.valueOf(0), name);
     }
 
 

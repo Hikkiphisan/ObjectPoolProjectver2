@@ -137,11 +137,13 @@ public class AppOrderDrinkfromCodeGym {
 
 
                     System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!");
+
+
                     // Thoát chương trình
 
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
-                case 5:
+                case 5:   //da thoát chương trình, phuong thuc nay khong cần thiết
                     // Thoát chương trình
                     System.out.println("Thoát chương trình...");
                     running = false;
@@ -152,7 +154,7 @@ public class AppOrderDrinkfromCodeGym {
 
                     ReadExcelFile readExcel = new ReadExcelFile();
                     readExcel.readExcelFile();
-
+                    break;
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
 

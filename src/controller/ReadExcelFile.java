@@ -39,8 +39,19 @@ public class ReadExcelFile {
                 Cell experienceCell = row.getCell(5);  // Kinh nghiệm làm việc
                 Cell certificationCell = row.getCell(9);  // Chứng chỉ
 
+
+                // Xử lý ID để loại bỏ ".0" nếu là số
+                String id;
+                if (idCell != null && idCell.getCellType() == CellType.NUMERIC) {
+                    id = String.valueOf((int) idCell.getNumericCellValue());
+                } else {
+                    id = idCell != null ? idCell.toString() : "N/A";
+                }
+
+
+
                 // Kiểm tra và lấy giá trị của từng ô (nếu không có thì để trống)
-                String id = idCell != null ? idCell.toString() : "N/A";
+//              String id = idCell != null ? idCell.toString() : "N/A";
                 String name = nameCell != null ? nameCell.getStringCellValue() : "N/A";
                 String experience = experienceCell != null ? experienceCell.getStringCellValue() : "N/A";
                 String certifications = certificationCell != null ? certificationCell.getStringCellValue() : "N/A";
@@ -53,7 +64,7 @@ public class ReadExcelFile {
 
             // In ra thông tin của tất cả các ứng viên
             for (Candidate_forthisJob candidate : candidates) {
-                System.out.println(candidate);
+                System.out.println(candidate.toString());
             }
 
 

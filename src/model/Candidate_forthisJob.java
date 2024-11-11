@@ -29,8 +29,7 @@ public class Candidate_forthisJob extends Person {
 
     @Override
     public String toString() {
-        return "Ứng viên có mã số " + id +
-                ". Họ tên là" + name + "" +
-                '}';
+        return "Ứng viên có mã số [" + id + "]" +
+                ". Họ tên là " + name + ", nguời này có " + experiences + " kinh nghiệm trong nghề và " + "có chứng chỉ: " + certifications;
     }
 }
