@@ -53,5 +53,21 @@ public class Candidate_forthisJob extends Person {
                 this.getExperienceAsInt() + " năm kinh nghiệm trong nghề và có chứng chí " + this.getCertifications()  ;
 
     }
+    public String toStringApplied() {
+        System.out.println("===================================");
+        System.out.println("ĐANG TUYỂN DỤNG ỨNG VIÊN....:");
+        System.out.println("===================================");
+
+
+        try {
+            Thread.sleep(3000); // Chờ trong 12 giây (12000 milliseconds)
+        } catch (InterruptedException e) {
+            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+        }
+
+
+        return "[" + this.name + "]";
+
+    }
 
 }

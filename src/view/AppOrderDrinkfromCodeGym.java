@@ -37,7 +37,7 @@ public class AppOrderDrinkfromCodeGym {
         } else {
             System.out.println("Đang tải dữ liệu để chạy ứng dụng....");
             try {
-                Thread.sleep(4000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -109,16 +109,31 @@ public class AppOrderDrinkfromCodeGym {
 
                     sortedCandidates = BubbleSort.bubbleSortByExperience(filteredCandidates);
                     System.out.println("=================================================================================================================");
-                    System.out.println("Sau khi vượt qua vòng phỏng vấn, ứng viên được chọn là:");
+                    System.out.print("Sau khi vượt qua vòng phỏng vấn, ứng viên được chọn là:");
                     Scanner scannerChoice = new Scanner(System.in);
                     int selectedIndex = scannerChoice.nextInt();
                     System.out.print("Lý do: ");
-                    scannerChoice.nextLine();
-
+                    Scanner scannerReason = new Scanner(System.in);
+                    String reason = scannerReason.nextLine();
 
                     if (selectedIndex >= 1 && selectedIndex <= sortedCandidates.size()) {
                         Candidate_forthisJob selectedCandidate = sortedCandidates.get(selectedIndex - 1); // -1 vì danh sách bắt đầu từ chỉ số 0
-                        System.out.println(selectedCandidate.toString() + " đã được bạn tuyển vào!! Hãy gửi mail chúc mừng người ấy!");
+                        System.out.println(selectedCandidate.toStringApplied() + " đã được bạn tuyển vào!! Hãy gửi mail chúc mừng người ấy!");
+                        System.out.println("===================================");
+                        System.out.println("Đang gửi mail thông báo nhận ứng viên.....");
+
+                        try {
+                            Thread.sleep(4000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("===================================");
+                        System.out.println("Gửi mail thành công.....");
+
+
+
+
+
                     } else {
                         System.out.println("Không có ứng viên đó trong danh sách đã được lọc.");
                     }
