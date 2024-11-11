@@ -5,12 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import controller.DisplayDataFromFileTxt;
-import controller.DisplayMenuAgain;
+import controller.*;
 import model.ClientThread;
 import service.WaiterPool;
-import controller.ReadOrderRequestsDataFromFileTxt;
-import controller.PrintInvoiceToTxt;
 
 public class AppOrderDrinkfromCodeGym {
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
@@ -41,7 +38,7 @@ public class AppOrderDrinkfromCodeGym {
 
 
             switch (choice) {
-                case 1:
+                case 6:
                     // Đọc thông tin khách hàng từ file gọi món
                     System.out.println("-----------------------------------\n**Giải thích quá trình**: \n Đang đọc dữ liệu từ file văn bản, chứ không phải là file nhị phân, \n Đang vận dụng regex để tìm kiếm, chỉ lấy ra những thông tin cần thiết của khách hàng trong cái file văn bản rất nhiều thông tin đó.\n-----------------------------------\n");
                     System.out.println("Đang đọc file, xin vui lòng đợi trong giây lát...");
@@ -149,6 +146,12 @@ public class AppOrderDrinkfromCodeGym {
                     System.out.println("Thoát chương trình...");
                     running = false;
                     break;
+
+                 //Case test
+                case 1:
+
+                    ReadExcelFile readExcel = new ReadExcelFile();
+                    readExcel.readExcelFile();
 
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
