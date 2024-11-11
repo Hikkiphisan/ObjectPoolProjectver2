@@ -14,7 +14,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class ReadExcelFile {
 
 
-     public void readExcelFile() {
+     public List<Candidate_forthisJob> readExcelFile() {
          // Đường dẫn đến file Excel cần truy cập
         Path filePath = Paths.get("D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\Job_Application_Coffee_Shop.xlsx");
          List<Candidate_forthisJob> candidates = new ArrayList<>();
@@ -74,5 +74,6 @@ public class ReadExcelFile {
         } catch (IOException e) {
             System.out.println("Lỗi đọc file: " + e.getMessage());
         }
+         return candidates;
      }
 }

@@ -6,11 +6,14 @@ import java.util.List;
 import java.util.Scanner;
 
 import controller.*;
+import model.Candidate_forthisJob;
 import model.ClientThread;
 import service.WaiterPool;
 
 public class AppOrderDrinkfromCodeGym {
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
+    static List<Candidate_forthisJob> candidates;
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -25,11 +28,15 @@ public class AppOrderDrinkfromCodeGym {
 
         while (running) {
             System.out.println("========= MENU =========");
-            System.out.println("1. Đọc dữ liệu đơn hàng từ file");
-            System.out.println("2. Hiển thị dữ liệu đã được đọc từ file văn bản");
-            System.out.println("3. Tạo và chạy luồng cho khách hàng");
-            System.out.println("4. In hóa đơn cho khách hàng");
-            System.out.println("5. Thoát chương trình");
+            System.out.println("1. Đọc đơn ứng tuyển");
+            System.out.println("2. Cơ chế lọc đơn ứng tuyển tự động (Applicant Tracking Systems - ATS) ");
+            System.out.println("3. Idea: Dùng thuât toán sắp xếp để sắp xếp theo chế độ ưu tiên tuyển dụng, ai có tiêu chí cao hơn sẽ xếp hàng đầu.");
+            System.out.println("3.5. Idea: Chọn được ứng viên bằng cách nhập chỉ số rồi thêm vào danh sách nhân viên");
+            System.out.println("4. Đọc dữ liệu đơn hàng từ file");
+            System.out.println("5. Hiển thị dữ liệu đã được đọc từ file văn bản");
+            System.out.println("6. Tạo và chạy luồng cho khách hàng");
+            System.out.println("7. In hóa đơn cho khách hàng");
+            System.out.println("8. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
@@ -38,7 +45,20 @@ public class AppOrderDrinkfromCodeGym {
 
 
             switch (choice) {
-                case 6:
+                case 1:
+
+                    ReadExcelFile readExcel = new ReadExcelFile();
+                    candidates = readExcel.readExcelFile();
+                    break;
+                case 2:
+                    System.out.println("=================================================================================================================");
+                    System.out.println("LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG, CHỈ LẤY NHỮNG ỨNG VIÊN CÓ 3 NĂM KINH NGHIỆM TRỞ LÊN, CÓ CHỨNG CHỈ IELTS, TOEIC, ...");
+                    System.out.println("=================================================================================================================");
+                    FilterbyRegex.filterCandidates(candidates);
+                    break;
+                case 3:
+                    break;
+                case 4:
                     // Đọc thông tin khách hàng từ file gọi món
                     System.out.println("-----------------------------------\n**Giải thích quá trình**: \n Đang đọc dữ liệu từ file văn bản, chứ không phải là file nhị phân, \n Đang vận dụng regex để tìm kiếm, chỉ lấy ra những thông tin cần thiết của khách hàng trong cái file văn bản rất nhiều thông tin đó.\n-----------------------------------\n");
                     System.out.println("Đang đọc file, xin vui lòng đợi trong giây lát...");
@@ -55,8 +75,7 @@ public class AppOrderDrinkfromCodeGym {
                     ReadOrderRequestsDataFromFileTxt.readOrderRequestsDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     System.out.println("Dữ liệu đã được đọc xong!");
                     break;
-                case 2:
-
+                case 5:
 
                     // Hiển thị dữ liệu đã đọc từ file
 
@@ -74,7 +93,7 @@ public class AppOrderDrinkfromCodeGym {
                     System.out.println("Dữ liệu đã đọc từ file văn bản:");
                     DisplayDataFromFileTxt.displayDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     break;
-                case 3:
+                case 6:
 
                     System.out.println("======================================================================================");
                     System.out.println("DANH SÁCH NHỮNG KHÁCH HÀNG ĐANG GỌI MÓN HIỆN TẠI, TRIỆU TẬP NHÂN VIÊN ĐỂ PHỤC VỤ HỌ!!");
@@ -112,8 +131,7 @@ public class AppOrderDrinkfromCodeGym {
                     break;
 
 
-                case 4:
-
+                case 7:
 
                     System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
 
@@ -143,18 +161,14 @@ public class AppOrderDrinkfromCodeGym {
 
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
-                case 5:   //da thoát chương trình, phuong thuc nay khong cần thiết
+                case 8:   //da thoát chương trình, phuong thuc nay khong cần thiết
                     // Thoát chương trình
                     System.out.println("Thoát chương trình...");
                     running = false;
                     break;
 
-                 //Case test
-                case 1:
 
-                    ReadExcelFile readExcel = new ReadExcelFile();
-                    readExcel.readExcelFile();
-                    break;
+
                 default:
                     System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
 
