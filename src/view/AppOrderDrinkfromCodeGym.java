@@ -17,6 +17,12 @@ public class AppOrderDrinkfromCodeGym {
     static List<Candidate_forthisJob> candidates;
     static List<Candidate_forthisJob> filteredCandidates;          // candidate đã lọc
     static List<Candidate_forthisJob> sortedCandidates;          // candidate đã sapxep theo muc do ưu tiên
+    public static Candidate_forthisJob selectedCandidate;
+    public static String[] nameWaiter = {
+            "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
+            "Hoàng Minh Nhật", "Thành"
+    };
+
 
     // Thông tin tài khoản và mật khẩu
     public static final String USERNAME = "admin123";
@@ -117,7 +123,7 @@ public class AppOrderDrinkfromCodeGym {
                     String reason = scannerReason.nextLine();
 
                     if (selectedIndex >= 1 && selectedIndex <= sortedCandidates.size()) {
-                        Candidate_forthisJob selectedCandidate = sortedCandidates.get(selectedIndex - 1); // -1 vì danh sách bắt đầu từ chỉ số 0
+                        selectedCandidate = sortedCandidates.get(selectedIndex - 1); // -1 vì danh sách bắt đầu từ chỉ số 0
                         System.out.println(selectedCandidate.toStringApplied() + " đã được bạn tuyển vào!! Hãy gửi mail chúc mừng người ấy!");
                         System.out.println("===================================");
                         System.out.println("Đang gửi mail thông báo nhận ứng viên.....");
@@ -131,6 +137,23 @@ public class AppOrderDrinkfromCodeGym {
                         System.out.println("Gửi mail thành công.....");
 
 
+                        String newWaiterName = (selectedCandidate != null) ? selectedCandidate.getNameCandidate() : "Nhân viên mới";
+
+                        // Chuyển mảng nameWaiter sang List để có thể thêm tên ứng viên
+                        List<String> waiterList = new ArrayList<>(List.of(nameWaiter));
+                        waiterList.add(newWaiterName);
+
+                        // Chuyển lại List thành mảng them set
+                        setNameWaiter(waiterList.toArray(new String[0]));
+
+                        System.out.println("Danh sách nhân viên phục vụ hiện tại:");
+                        for (String waiter : getNameWaiter()) {
+                            System.out.println(waiter);
+                        }
+
+
+
+
 
 
 
@@ -142,11 +165,7 @@ public class AppOrderDrinkfromCodeGym {
 
                     break;
                 case 4:
-                    // Đọc thông tin khách hàng từ file gọi món
-                    System.out.println("-----------------------------------\n**Giải thích quá trình**: \n Đang đọc dữ liệu từ file văn bản, chứ không phải là file nhị phân, \n Đang vận dụng regex để tìm kiếm, chỉ lấy ra những thông tin cần thiết của khách hàng trong cái file văn bản rất nhiều thông tin đó.\n-----------------------------------\n");
-                    System.out.println("Đang đọc file, xin vui lòng đợi trong giây lát...");
-
-
+                    System.out.println("Dữ liệu đang được đọc............");
                     // Quá trình "chờ ảo" (fake waiting)
                     try {
                         Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
@@ -258,5 +277,15 @@ public class AppOrderDrinkfromCodeGym {
         }
         scanner.close();  // Đóng Scanner khi kết thúc
     }
+    // Setter để cập nhật nameWaiter
+    public static void setNameWaiter(String[] newNameWaiter) {
+        nameWaiter = newNameWaiter;
+    }
+
+    // Getter để lấy nameWaiter
+    public static String[] getNameWaiter() {
+        return nameWaiter;
+    }
+
 }
 

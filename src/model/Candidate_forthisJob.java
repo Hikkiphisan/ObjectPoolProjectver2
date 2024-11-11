@@ -9,6 +9,8 @@ public class Candidate_forthisJob extends Person {
         return priority;
     }
 
+
+
     public void setPriority(int priority) {
         this.priority = priority;
     }
@@ -18,6 +20,11 @@ public class Candidate_forthisJob extends Person {
         this.experiences = experiences;
         this.certifications = certifications;
     }
+
+    public String getNameCandidate() {
+        return name;
+    }
+
 
     public String getExperiences() {
         return experiences;

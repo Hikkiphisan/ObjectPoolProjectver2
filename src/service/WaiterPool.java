@@ -1,5 +1,6 @@
 package service;
 
+import model.Candidate_forthisJob;
 import utils.exception.WaiterNotFoundException;
 import model.WaiterInServer;
 
@@ -11,7 +12,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static view.AppOrderDrinkfromCodeGym.getNameWaiter;
+import static view.AppOrderDrinkfromCodeGym.selectedCandidate;
+
 public class WaiterPool {
+
     private static final long EXPIRED_TIME_IN_MILESECOND = 1200;
     private static final long NUMBER_OF_WAITER = 9;
 
@@ -47,15 +52,16 @@ public class WaiterPool {
 
 
 
-
+/*
         String[] nameWaiter = {
                 "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
                 "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc"
         };
-        // Lấy tên nhân viên từ mảng nameWaiter theo chỉ số
+*/
+
 
         int index = count.incrementAndGet() - 1;  // Giả sử count là một AtomicInteger, giúp đếm số nhân viên
-        String waiterName = nameWaiter[index];  // Lấy tên của nhân viên theo chỉ số
+        String waiterName = getNameWaiter()[index];  // Lấy tên của nhân viên theo chỉ số
         waiting(6000);
 
         WaiterInServer waiter = new WaiterInServer("Nhân viên phục vụ " + waiterName); //TRuyen nhan vien boi ban cua HIgland vao
