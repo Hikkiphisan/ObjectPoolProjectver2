@@ -3,7 +3,15 @@ package model;
 public class Candidate_forthisJob extends Person {
     public String experiences;
     public String certifications;
+    public int priority;
 
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
 
     public Candidate_forthisJob(String id, String name, String experiences, String certifications) {
         super(id, name);
@@ -38,4 +46,12 @@ public class Candidate_forthisJob extends Person {
         return "Ứng viên có mã số [" + id + "]" +
                 ". Họ tên là " + name + ", nguời này có " + experiences + " kinh nghiệm trong nghề và " + "có chứng chỉ: " + certifications;
     }
+
+
+    public String toEditedString() {
+        return "Hồ sơ xin việc của " + this.name + " được ưu tiên thứ " + this.priority + " vì có " +
+                this.getExperienceAsInt() + " năm kinh nghiệm trong nghề và có chứng chỉ: " +
+                String.join(", ", this.certifications);
+    }
+
 }

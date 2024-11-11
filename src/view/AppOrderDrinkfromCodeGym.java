@@ -15,7 +15,8 @@ import static controller.Login.login;
 public class AppOrderDrinkfromCodeGym {
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
     static List<Candidate_forthisJob> candidates;
-
+    static List<Candidate_forthisJob> filteredCandidates;          // candidate đã lọc
+    static List<Candidate_forthisJob> sortedCandidates;          // candidate đã sapxep theo muc do ưu tiên
 
     // Thông tin tài khoản và mật khẩu
     public static final String USERNAME = "admin123";
@@ -76,9 +77,10 @@ public class AppOrderDrinkfromCodeGym {
                     System.out.println("=================================================================================================================");
                     System.out.println("LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG, CHỈ LẤY NHỮNG ỨNG VIÊN CÓ 3 NĂM KINH NGHIỆM TRỞ LÊN, CÓ CHỨNG CHỈ IELTS, TOEIC, ...");
                     System.out.println("=================================================================================================================");
-                    FilterbyRegex.filterCandidates(candidates);
+                    filteredCandidates = FilterbyRegex.filterCandidates(candidates);
                     break;
                 case 3:
+                    sortedCandidates = BubbleSort.bubbleSortByExperience(filteredCandidates);
                     break;
                 case 4:
                     // Đọc thông tin khách hàng từ file gọi món
