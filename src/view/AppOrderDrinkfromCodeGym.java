@@ -8,6 +8,7 @@ import java.util.Scanner;
 import controller.*;
 import model.Candidate_forthisJob;
 import model.ClientThread;
+import model.Manager;
 import service.WaiterPool;
 
 import static controller.Login.login;
@@ -59,8 +60,9 @@ public class AppOrderDrinkfromCodeGym {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            Manager manager =new Manager("1", "Nguyễn Khánh Tùng");
             System.out.println("Đăng nhập thành công!");
+            System.out.println("\u001B[31mQuản lý [" + manager.getName() + "] đang sử dụng app!\u001B[0m");
         }
 
 
@@ -76,15 +78,16 @@ public class AppOrderDrinkfromCodeGym {
 
         while (running) {
             System.out.println("========= MENU =========");
+            System.out.println("0. Mở cửa kinh doanh.");
             System.out.println("1. Đọc đơn ứng tuyển");
             System.out.println("2. Cơ chế lọc đơn ứng tuyển tự động (Applicant Tracking Systems - ATS) ");
-            System.out.println("3. Idea: Dùng thuât toán sắp xếp để sắp xếp theo chế độ ưu tiên tuyển dụng, ai có tiêu chí cao hơn sẽ xếp hàng đầu.");
-            System.out.println("3.5. Idea: Chọn được ứng viên bằng cách nhập chỉ số rồi thêm vào danh sách nhân viên");
+            System.out.println("3. Cơ chế lọc đơn theo diện ưu tiên.");
             System.out.println("4. Đọc dữ liệu đơn hàng từ file");
             System.out.println("5. Hiển thị dữ liệu đã được đọc từ file văn bản");
             System.out.println("6. Tạo và chạy luồng cho khách hàng");
-            System.out.println("7. In hóa đơn cho khách hàng");
-            System.out.println("8. Thoát chương trình");
+            System.out.println("7. In doanh thu.");
+            System.out.println("8. In hóa đơn cho khách hàng");
+            System.out.println("9. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
@@ -93,6 +96,20 @@ public class AppOrderDrinkfromCodeGym {
 
 
             switch (choice) {
+                case 0:
+
+                    System.out.println("Đang mở quán ----Loading-----");
+
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                        System.out.println("\u001B[31m===================================================================================\u001B[0m");
+                        System.out.println("\u001B[31m[ALERT!] QUÁN HIỆN NAY CHƯA ĐỦ NHÂN VIÊN, KHÔNG THỂ KINH DOANH, HÃY TUYỂN THÊM NHÂN VIÊN!!!!\u001B[0m");
+                        System.out.println("\u001B[31m===================================================================================\u001B[0m");
+                        break;
+
                 case 1:
 
                     ReadExcelFile readExcel = new ReadExcelFile();
@@ -241,9 +258,14 @@ public class AppOrderDrinkfromCodeGym {
                     System.out.println("#############################################################################################");
 
                     break;
-
-
                 case 7:
+
+                    String fileNameBInary = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\binaryFileVenue.txt";
+                    RevenueWritertoBinaryFile.writeRevenueToBinaryFile(moneyNames,fileNameBInary);
+//                    ReaderRevenue.readRevenueFromBinaryFile(fileNameBInary);
+                    break;
+
+                case 8:
 
                     System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
 
@@ -254,18 +276,14 @@ public class AppOrderDrinkfromCodeGym {
                         String drinkName = drinkNames.get(i);
                         String moneyName = moneyNames.get(i);
                         PrintInvoiceToTxt.printInvoiceToTxt(clientName, drinkName, moneyName);
-
                     }
 
-                    // Quá trình "chờ ảo" (fake waiting)
-                    try {
-                        Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
-                    }
-
-
-
+                        // Quá trình "chờ ảo" (fake waiting)
+                        try {
+                            Thread.sleep(2000); // Chờ trong 12 giây (12000 milliseconds)
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();  // Xử lý nếu gặp lỗi khi ngủ
+                        }
 
 
 
@@ -277,10 +295,15 @@ public class AppOrderDrinkfromCodeGym {
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
 
-                case 8:   //da thoát chương trình, phuong thuc nay khong cần thiết
+
+
+                case 9:   //da thoát chương trình, phuong thuc nay khong cần thiết
                     // Thoát chương trình
                     System.out.println("Thoát chương trình...");
                     running = false;
+
+
+
                     break;
 
 
@@ -303,6 +326,7 @@ public class AppOrderDrinkfromCodeGym {
     public static String[] getNameWaiter() {
         return nameWaiter;
     }
+
 
 }
 

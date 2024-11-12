@@ -29,8 +29,13 @@ public class ClientThread extends Person implements Runnable {
         this.customerWaitingTime = customerWaitingTime;
     }
 
+    public String getMoneyName() {
+        return moneyName;
+    }
 
-
+    public void setMoneyName(String moneyName) {
+        this.moneyName = moneyName;
+    }
 
     public void run() {
         orderaDrink();

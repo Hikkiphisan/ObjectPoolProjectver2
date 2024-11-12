@@ -63,8 +63,8 @@ public class WaiterPool {
 
 
         String[] nameWaiternewArray = {
-                "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
-                "Hoàng Minh Nhật", "Thành", "Trần Quang Huy"
+                "Trần Minh Trí", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
+                "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc", "Trần Quang Huy"
         };
 
 
