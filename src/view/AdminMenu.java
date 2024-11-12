@@ -81,7 +81,8 @@ public class AdminMenu implements Subject {
                     System.out.println("a. Đọc Menu chứa danh sách đồ ăn và đồ uống.");
                     System.out.println("b. Thêm món mới vào menu rồi in vào file TXT.");
                     System.out.println("c. Gửi thông báo món mới cho những khách hàng Follow Fanpage của CodeGym Coffee.");
-                    System.out.print("Nhập lựa chọn của bạn (a, b, c): ");
+                    System.out.println("d. Thoát chương trình.");
+                    System.out.print("Nhập lựa chọn của bạn (a, b, c, d): ");
                     String subChoice = scanner.nextLine();
 
                     switch (subChoice) {
@@ -157,6 +158,13 @@ public class AdminMenu implements Subject {
 
 
                             break;
+
+
+                        case "d":
+                            // Quay lại menu Admin
+                            System.out.println("Đang quay lại Menu Admin...");
+                            return; // This will return to the calling method and exit the current menu loop (i.e., go back to the Admin Menu)
+
 
                         default:
                             System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn a, b, hoặc c.");
