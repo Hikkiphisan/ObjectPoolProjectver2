@@ -87,7 +87,8 @@ public class AppOrderDrinkfromCodeGym {
             System.out.println("6. Tạo và chạy luồng cho khách hàng");
             System.out.println("7. In doanh thu.");
             System.out.println("8. In hóa đơn cho khách hàng");
-            System.out.println("9. Thoát chương trình");
+            System.out.println("9. Đuổi việc nhân viên. <chưa xong>");
+            System.out.println("10. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
