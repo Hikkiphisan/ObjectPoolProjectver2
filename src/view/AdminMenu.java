@@ -1,4 +1,4 @@
-package accountLogin;
+package view;
 
 import controller.*;
 import model.Candidate_forthisJob;
@@ -87,13 +87,20 @@ public class AdminMenu implements Subject {
                         case "a":
                             // Đọc file TXT chứa danh sách đồ ăn và đồ uống
                             System.out.println("Đang đọc danh sách đồ ăn và đồ uống từ file...");
-                            String filePath = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInfor.txt";
+                            String filePathDrink = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInfor.txt";
 
-                            FoodAndDrinkFileInfor.readMenuDrinkFromFile(filePath);
+                            DrinkFileInfor.readMenuDrinkFromFile(filePathDrink);
+
+
+                            //Khoông dọc đuưc
+                            String filePathFood = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\FoodMenuInfor.txt";
+                            FoodFileInfor.readMenuFoodFromFile(filePathFood);
                             System.out.println("Đã đọc xong menu từ file TXT.");
+
                             break;
 
                         case "b":
+                            break;
 //                            // Thêm món mới vào menu và ghi vào file
 //                            System.out.print("Nhập tên món mới: ");
 //                            String newDish = scanner.nextLine();

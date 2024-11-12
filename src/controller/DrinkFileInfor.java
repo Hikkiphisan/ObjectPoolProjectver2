@@ -1,16 +1,15 @@
 package controller;
 
 import model.Drink;
+import model.Food;
 
-import java.awt.*;
-import java.util.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FoodAndDrinkFileInfor {
+public class DrinkFileInfor {
     public static List<Drink> readMenuDrinkFromFile(String filePath) {
         List<Drink> menuItemsDrink = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -36,11 +35,20 @@ public class FoodAndDrinkFileInfor {
     }
     // Phương thức hiển thị menu
     public static void displayMenuDrink(List<Drink> menuItemsDrink) {
-        System.out.println("=========== Menu ===========");
+        System.out.println("=========== Drink Menu ===========");
         for (Drink itemdrink : menuItemsDrink) {
             System.out.println(itemdrink);
         }
         System.out.println("=============================");
     }
 
-}
+
+
+
+
+
+    }
+
+
+
+

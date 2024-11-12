@@ -1,20 +1,12 @@
 package view;
 
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import accountLogin.AdminLogin;
-import accountLogin.AdminMenu;
 import accountLogin.CustomerLogin;
-import accountLogin.CustomerMenu;
-import controller.*;
 import model.Candidate_forthisJob;
-import model.ClientThread;
 import model.Manager;
-import service.WaiterPool;
-
 
 
 public class AppOrderDrinkfromCodeGym {

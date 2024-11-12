@@ -1,4 +1,4 @@
-package accountLogin;
+package view;
 
 import model.Candidate_forthisJob;
 import observer.Observer;

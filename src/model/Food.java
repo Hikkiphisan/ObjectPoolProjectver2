@@ -4,10 +4,13 @@ public class Food extends Product{
     private String size;
     private String toping;
 
-    public Food(int id, String name, double price, String size, String toping) {
-        super(id, name, price);
+    public Food(String id, String name, double price, String size, String toping) {
+        super(Integer.parseInt(id), name, price);
         this.size = size;
         this.toping = toping;
+    }
+    public Food(String id, String name, Double price) {
+        super(Integer.parseInt(id), name, price);
     }
 
     public String getSize() {
@@ -28,12 +31,11 @@ public class Food extends Product{
 
     @Override
     public String toString() {
-        return "Food{" +
-                "size='" + size + '\'' +
-                ", toping='" + toping + '\'' +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return "\n✧･ﾟ: *✧･ﾟ:*  🍲 THỰC ĐƠN ĐỒ ĂN  *:･ﾟ✧*:･ﾟ✧\n" +
+                "┌───────────── •✧✧• ─────────────┐\n" +
+                "│  🍲 ID    : " + id + "\n" +
+                "│  🍲 Tên món  : '" + name + "'\n" +
+                "│  💲 Giá tiền : $" + String.format("%.2f", price) + "\n" +
+                "└───────────── •✧✧• ─────────────┘\n";
     }
 }
