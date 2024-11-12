@@ -12,10 +12,15 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import static view.AppOrderDrinkfromCodeGym.getNameWaiter;
-import static view.AppOrderDrinkfromCodeGym.selectedCandidate;
+import static view.AppOrderDrinkfromCodeGym.*;
 
 public class WaiterPool {
+
+
+    public WaiterPool() {
+    }
+
+
 
     private static final long EXPIRED_TIME_IN_MILESECOND = 1200;
     private static final long NUMBER_OF_WAITER = 9;
@@ -25,6 +30,7 @@ public class WaiterPool {
 
     private final AtomicInteger count = new AtomicInteger(0);
     private final AtomicBoolean waiting = new AtomicBoolean(false);
+
 
     public synchronized WaiterInServer getWaiter() {
         if (!available.isEmpty()) {
@@ -48,20 +54,23 @@ public class WaiterPool {
         System.out.println(waiter.getNameWaiter() + " đang rảnh và có thể chạy bàn.");
     }
 
+
+
+
     private WaiterInServer createWaiter() {
 
 
 
-/*
-        String[] nameWaiter = {
+
+        String[] nameWaiternewArray = {
                 "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
-                "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc"
+                "Hoàng Minh Nhật", "Thành", "Trần Quang Huy"
         };
-*/
+
 
 
         int index = count.incrementAndGet() - 1;  // Giả sử count là một AtomicInteger, giúp đếm số nhân viên
-        String waiterName = getNameWaiter()[index];  // Lấy tên của nhân viên theo chỉ số
+        String waiterName = nameWaiternewArray[index];  // Lấy tên của nhân viên theo chỉ số
         waiting(6000);
 
         WaiterInServer waiter = new WaiterInServer("Nhân viên phục vụ " + waiterName); //TRuyen nhan vien boi ban cua HIgland vao

@@ -23,14 +23,26 @@ public class AppOrderDrinkfromCodeGym {
             "Hoàng Minh Nhật", "Thành"
     };
 
+    public static List<String> nameWaiters = List.of(new String[]{
+            "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
+            "Hoàng Minh Nhật", "Thành"});
+
+    // Biến public static cho danh sách nhân viên cập nhật
+    public static String[] nameWaiterNewArray;
+
 
     // Thông tin tài khoản và mật khẩu
     public static final String USERNAME = "admin123";
     public static final String PASSWORD = "******";
 
 
-
     public static void main(String[] args) {
+
+
+
+
+
+
 
         // Đăng nhập
         Scanner scanner = null;
@@ -139,28 +151,28 @@ public class AppOrderDrinkfromCodeGym {
 
                         String newWaiterName = (selectedCandidate != null) ? selectedCandidate.getNameCandidate() : "Nhân viên mới";
 
-                        // Chuyển mảng nameWaiter sang List để có thể thêm tên ứng viên
+                        // Chuyển mảng nameWaiter thành List để có thể dễ dàng thêm tên mới
                         List<String> waiterList = new ArrayList<>(List.of(nameWaiter));
+
+                        // Thêm tên nhân viên mới vào danh sách
                         waiterList.add(newWaiterName);
 
-                        // Chuyển lại List thành mảng them set
-                        setNameWaiter(waiterList.toArray(new String[0]));
 
+
+                        // Chuyển List trở lại thành mảng String[]
+                        String[] nameWaiterNewArray = waiterList.toArray(new String[0]);
+
+
+                        // In danh sách nhân viên phục vụ hiện tại
                         System.out.println("Danh sách nhân viên phục vụ hiện tại:");
-                        for (String waiter : getNameWaiter()) {
+                        for (String waiter : nameWaiterNewArray) {
                             System.out.println(waiter);
                         }
-
-
-
-
-
 
 
                     } else {
                         System.out.println("Không có ứng viên đó trong danh sách đã được lọc.");
                     }
-
 
 
                     break;
@@ -253,6 +265,10 @@ public class AppOrderDrinkfromCodeGym {
                     }
 
 
+
+
+
+
                     System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!");
 
 
@@ -260,6 +276,7 @@ public class AppOrderDrinkfromCodeGym {
 
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
+
                 case 8:   //da thoát chương trình, phuong thuc nay khong cần thiết
                     // Thoát chương trình
                     System.out.println("Thoát chương trình...");
