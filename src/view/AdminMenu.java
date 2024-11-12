@@ -100,29 +100,19 @@ public class AdminMenu implements Subject {
                             break;
 
                         case "b":
+
+                            // Thêm món mới vào menu và ghi vào file
+                            System.out.print("Nhập tên món mới: ");
+                            String newDish = scanner.nextLine();
+                            System.out.print("Nhập giá món mới: ");
+                            String newPrice = scanner.nextLine();
+                            filePathDrink = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInforNEw.txt";
+                            FoodAndDrinkFileHandler.addDishToFile(newDish, newPrice, filePathDrink);
+                            System.out.println("Đã thêm món mới và ghi vào file TXT.");
                             break;
-//                            // Thêm món mới vào menu và ghi vào file
-//                            System.out.print("Nhập tên món mới: ");
-//                            String newDish = scanner.nextLine();
-//                            System.out.print("Nhập giá món mới: ");
-//                            String newPrice = scanner.nextLine();
-//
-//                            FoodAndDrinkFileHandler.addDishToFile(newDish, newPrice);
-//                            System.out.println("Đã thêm món mới và ghi vào file TXT.");
-//                            break;
 
                         case "c":
-//                            // Sửa món và ghi lại vào file
-//                            System.out.print("Nhập tên món cần sửa: ");
-//                            String dishToEdit = scanner.nextLine();
-//                            System.out.print("Nhập tên mới của món: ");
-//                            String newDishName = scanner.nextLine();
-//                            System.out.print("Nhập giá mới của món: ");
-//                            String newDishPrice = scanner.nextLine();
-//
-//                            FoodAndDrinkFileHandler.updateDishInFile(dishToEdit, newDishName, newDishPrice);
-//                            System.out.println("Đã cập nhật món và ghi lại vào file TXT.");
-//                            break;
+                            break;
 
                         default:
                             System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn a, b, hoặc c.");
