@@ -1,14 +1,18 @@
 package view;
 
+import controller.DrinkFileLastLine;
 import model.Candidate_forthisJob;
-import observer.Observer;
+import model.ClientThread;
+import observer.CustomerObserver;
+import observer.Subject;
 import service.WaiterPool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerMenu implements Observer {
+public class CustomerMenu implements CustomerObserver {
+
 
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
     static List<Candidate_forthisJob> candidates;
@@ -25,15 +29,10 @@ public class CustomerMenu implements Observer {
             "Hoàng Minh Nhật", "Thành"});
 
 
+
+
+
     public static void showCustomerMenu(Scanner scanner) {
-
-
-        WaiterPool waiterPool = new WaiterPool();
-
-
-        List<String> clientNames = new ArrayList<>();
-        List<String> drinkNames = new ArrayList<>();
-        List<String> moneyNames = new ArrayList<>();
 
 
         boolean running = true;
@@ -41,8 +40,8 @@ public class CustomerMenu implements Observer {
         while (running) {
             System.out.println("========= TÀI KHOẢN CUSTOMER: CẬP NHẬT THÔNG TIN VÀ ĐẶT MÓN ONLINE =========");
             System.out.println("1. Nhận thông báo đồ uống, đồ ăn mới");
-            System.out.println("2. Đặt món ");
-            System.out.println("10. Thoát chương trình");
+            System.out.println("2. Đặt món <chưa xong> ");
+            System.out.println("3. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
@@ -52,13 +51,28 @@ public class CustomerMenu implements Observer {
 
             switch (choice) {
                 case 0:
-                         break;
+                    break;
+
+                case 1:
+                    AdminMenu menuNotifier = new AdminMenu();
+                    menuNotifier.addObserver(new CustomerMenu());
+                    System.out.println("Bạn đã đăng ký nhận thông báo món mới.");
+                    CustomerObserver customerObserver = new CustomerMenu();
+                    String filePath = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInforNEw.txt";
+                    String newDrink = DrinkFileLastLine.getLastDrinkFromFile(filePath);     //hứng phần tử, phương pháp hữu hieu nhat
+                    customerObserver.update(newDrink);
+                    break;
+
             }
+
         }
     }
 
     @Override
     public void update(String newDrink) {
-        System.out.println("Thông báo: Đã có đồ uống mới: - " + newDrink + "! Hãy thử ngay!");
+        System.out.println("==============================================================================");
+        System.out.println("\033[0;31mThông báo: Đã có đồ uống mới: - " + newDrink + "! Hãy thử ngay!\033[0m");
+        System.out.println("==============================================================================");
+
     }
 }

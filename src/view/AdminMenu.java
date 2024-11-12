@@ -1,9 +1,10 @@
 package view;
 
+import accountLogin.CustomerLogin;
 import controller.*;
 import model.Candidate_forthisJob;
 import model.ClientThread;
-import observer.Observer;
+import observer.CustomerObserver;
 import observer.Subject;
 import service.WaiterPool;
 
@@ -26,7 +27,7 @@ public class AdminMenu implements Subject {
             "Trần Minh Trí", "Phí Hữu Lộc", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
             "Hoàng Minh Nhật", "Thành"});
 
-
+    public static String newDish;
     public static void showAdminMenu(Scanner scanner) {
 
 
@@ -79,7 +80,7 @@ public class AdminMenu implements Subject {
                 case 1:
                     System.out.println("a. Đọc Menu chứa danh sách đồ ăn và đồ uống.");
                     System.out.println("b. Thêm món mới vào menu rồi in vào file TXT.");
-                    System.out.println("c. Sửa món rồi in vào file TXT.");
+                    System.out.println("c. Gửi thông báo món mới cho những khách hàng Follow Fanpage của CodeGym Coffee.");
                     System.out.print("Nhập lựa chọn của bạn (a, b, c): ");
                     String subChoice = scanner.nextLine();
 
@@ -103,7 +104,8 @@ public class AdminMenu implements Subject {
 
                             // Thêm món mới vào menu và ghi vào file
                             System.out.print("Nhập tên món mới: ");
-                            String newDish = scanner.nextLine();
+                            newDish = scanner.nextLine();
+
                             System.out.print("Nhập giá món mới: ");
                             String newPrice = scanner.nextLine();
                             filePathDrink = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInforNEw.txt";
@@ -112,6 +114,48 @@ public class AdminMenu implements Subject {
                             break;
 
                         case "c":
+                            AdminMenu adminMenu = new AdminMenu();
+                            ClientThread clientThread = new ClientThread("Vũ Thị Kiều Anh", "kieuanh123");
+                            // Thêm khách hàng theo dõi Fanpage
+//                            adminMenu.addObserver(new ClientThread("Vũ Thị Kiều Anh", "kieuanh123"));
+//                            adminMenu.addObserver(new ClientThread("Nguyễn Bá Tuấn Anh,", "tuananh123"));
+
+                            String filePath = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInforNEw.txt";
+                            String tenMonMoi = DrinkFileLastLine.getLastDrinkFromFile(filePath);     //hứng phần tử, phương pháp hữu hieu nhat
+
+
+
+//                            String tenMonMoi = "Cocacola";     //fix lại sau: thông tin này sẽ được lấy ra từ file txt
+//                            String giaMoi = newPrice;
+
+                            // Thông báo đến tất cả khách hàng
+                            adminMenu.notifyObserevrs(tenMonMoi, clientThread);
+                            System.out.println("Đã gửi thông báo món mới cho khách hàng theo dõi.");
+
+
+                 // Teleport sang phan Đăng nhập Khách hàng
+                            System.out.println("==============================================================================");
+                            System.out.println("\033[0;31m NHIỆM VỤ: ĐĂNG NHẬP TÀI KHOẢN KHÁCH HÀNG ĐỂ CHECK THÔNG BÁO TỪ ADMIN\033[0m");
+                            System.out.println("==============================================================================");
+                            System.out.print("Nhập tên đăng nhập Khách hàng: ");
+                            String customerUsername = scanner.nextLine();
+                            System.out.print("Nhập mật khẩu Khách hàng: ");
+                            String customerPassword = scanner.nextLine();
+
+
+
+                            CustomerLogin customerLogin = new CustomerLogin(customerUsername, customerPassword);
+                            if (customerLogin.login()) {
+                                System.out.println("Đăng nhập khách hàng thành công!");
+                                CustomerMenu.showCustomerMenu(scanner);  // Hiển thị thông báo cho khách hàng
+                            } else {
+                                System.out.println("Đăng nhập thất bại. Tên đăng nhập hoặc mật khẩu không đúng.");
+                            }
+
+
+
+
+
                             break;
 
                         default:
@@ -336,30 +380,33 @@ public class AdminMenu implements Subject {
         return nameWaiter;
     }
 
-    private List<Observer> observers = new ArrayList<>();
+
+
+
+    public List<CustomerObserver> customerObserverList = new ArrayList<>();
 
     @Override
-    public void addObserver(Observer observer) {
-        observers.add(observer);
+    public void addObserver(CustomerObserver customerObserver) {
+        customerObserverList.add(customerObserver);
     }
 
     @Override
-    public void removeObserver(Observer observer) {
-        observers.remove(observer);
+    public void removeObserver(CustomerObserver customerObserver) {
+        customerObserverList.remove(customerObserver);
     }
 
     @Override
-    public void notifyObservers(String newDrink) {
-        for (Observer observer : observers) {
-            observer.update(newDrink);
-        }
+    public void notifyObserevrs(String newDrink, CustomerObserver customer) {
+//        for (CustomerObserver customer : customerObserverList) {
+           customer.update(newDrink);
+            System.out.println("Đã thông báo cho tài khoản khách hàng "  + customer + " [Alert: Admin đã thêm đồ uống mới là món: " + newDrink + ']');
+//        }
     }
 
 
 
     public void addNewDrink(String newDrink) {
-        System.out.println("Admin đã thêm đồ uống mới: " + newDrink);
-        notifyObservers(newDrink); // Thông báo cho tất cả các khách hàng về đồ uống mới
+
     }
 
 }

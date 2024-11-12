@@ -1,12 +1,15 @@
 package model;
 
 import java.time.LocalTime;
+
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
+
+import observer.CustomerObserver;
 import service.WaiterPool;
 import utils.exception.WaiterNotFoundException;
 
-public class ClientThread extends Person implements Runnable {
+public class ClientThread extends Person implements Runnable, CustomerObserver {
     private WaiterPool waiterPool;
     private String drinkName;
     private String moneyName;
@@ -28,6 +31,14 @@ public class ClientThread extends Person implements Runnable {
         this.customerArrivalOrder = customerArrivalOrder;
         this.customerWaitingTime = customerWaitingTime;
     }
+
+
+    public ClientThread(String name, String drinkName) {
+
+        super(String.valueOf(0), name);
+        this.drinkName = drinkName;
+           }
+
 
     public String getMoneyName() {
         return moneyName;
@@ -62,5 +73,10 @@ public class ClientThread extends Person implements Runnable {
 
     public static int randomInt(int min, int max) {
         return new Random().nextInt((max - min) + 1) + min;
+    }
+
+    @Override
+    public void update(String newDrink) {
+        System.out.println("Thông báo: Đã có món mới: " + newDrink + "! Hãy thử ngay!");
     }
 }
