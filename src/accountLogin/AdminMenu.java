@@ -3,13 +3,15 @@ package accountLogin;
 import controller.*;
 import model.Candidate_forthisJob;
 import model.ClientThread;
+import observer.Observer;
+import observer.Subject;
 import service.WaiterPool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AdminMenu {
+public class AdminMenu implements Subject {
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
     static List<Candidate_forthisJob> candidates;
     static List<Candidate_forthisJob> filteredCandidates;          // candidate đã lọc
@@ -41,16 +43,18 @@ public class AdminMenu {
         while (running) {
             System.out.println("========= TÀI KHOẢN ADMIN: QUẢN LÝ NỘI BỘ =========");
             System.out.println("0. Mở cửa kinh doanh.");
-            System.out.println("1. Đọc đơn ứng tuyển");
-            System.out.println("2. Cơ chế lọc đơn ứng tuyển tự động (Applicant Tracking Systems - ATS) ");
-            System.out.println("3. Cơ chế lọc đơn theo diện ưu tiên.");
-            System.out.println("4. Đọc dữ liệu đơn hàng từ file");
-            System.out.println("5. Hiển thị dữ liệu đã được đọc từ file văn bản");
-            System.out.println("6. Tạo và chạy luồng cho khách hàng");
-            System.out.println("7. In doanh thu.");
-            System.out.println("8. In hóa đơn cho khách hàng");
-            System.out.println("9. Đuổi việc nhân viên. <chưa xong>");
-            System.out.println("10. Thoát chương trình");
+            System.out.println("1. Thêm, sửa, xoá các món ăn trong Menu của quán.");
+            System.out.println("2. Đọc đơn ứng tuyển");
+            System.out.println("3. Cơ chế lọc đơn ứng tuyển tự động (Applicant Tracking Systems - ATS) ");
+            System.out.println("4. Cơ chế lọc đơn theo diện ưu tiên.");
+            System.out.println("5. Đọc dữ liệu đơn hàng từ file");
+            System.out.println("6. Hiển thị dữ liệu đã được đọc từ file văn bản");
+            System.out.println("6.5: Cơ chế lọc khách để phục vụ theo diện ưu tiên <Idea: Khách nào có thời gian đợi lâu hơn thì phục vụ trước.>");
+            System.out.println("7. Hiển thị trạng thái phục vụ hiện tại (Tạo và chạy luồng cho khách hàng)");
+            System.out.println("8. In doanh thu.");
+            System.out.println("9. In hóa đơn cho khách hàng");
+            System.out.println("10. Đuổi việc nhân viên. <chưa xong>");
+            System.out.println("11. Thoát chương trình");
             System.out.print("Chọn một tùy chọn (1-4): ");
 
 
@@ -72,13 +76,59 @@ public class AdminMenu {
                     System.out.println("\u001B[31m[ALERT!] QUÁN HIỆN NAY CHƯA ĐỦ NHÂN VIÊN, KHÔNG THỂ KINH DOANH, HÃY TUYỂN THÊM NHÂN VIÊN!!!!\u001B[0m");
                     System.out.println("\u001B[31m===================================================================================\u001B[0m");
                     break;
-
                 case 1:
+                    System.out.println("a. Đọc Menu chứa danh sách đồ ăn và đồ uống.");
+                    System.out.println("b. Thêm món mới vào menu rồi in vào file TXT.");
+                    System.out.println("c. Sửa món rồi in vào file TXT.");
+                    System.out.print("Nhập lựa chọn của bạn (a, b, c): ");
+                    String subChoice = scanner.nextLine();
+
+                    switch (subChoice) {
+                        case "a":
+                            // Đọc file TXT chứa danh sách đồ ăn và đồ uống
+                            System.out.println("Đang đọc danh sách đồ ăn và đồ uống từ file...");
+                            String filePath = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\DrinkMenuInfor.txt";
+
+                            FoodAndDrinkFileInfor.readMenuDrinkFromFile(filePath);
+                            System.out.println("Đã đọc xong menu từ file TXT.");
+                            break;
+
+                        case "b":
+//                            // Thêm món mới vào menu và ghi vào file
+//                            System.out.print("Nhập tên món mới: ");
+//                            String newDish = scanner.nextLine();
+//                            System.out.print("Nhập giá món mới: ");
+//                            String newPrice = scanner.nextLine();
+//
+//                            FoodAndDrinkFileHandler.addDishToFile(newDish, newPrice);
+//                            System.out.println("Đã thêm món mới và ghi vào file TXT.");
+//                            break;
+
+                        case "c":
+//                            // Sửa món và ghi lại vào file
+//                            System.out.print("Nhập tên món cần sửa: ");
+//                            String dishToEdit = scanner.nextLine();
+//                            System.out.print("Nhập tên mới của món: ");
+//                            String newDishName = scanner.nextLine();
+//                            System.out.print("Nhập giá mới của món: ");
+//                            String newDishPrice = scanner.nextLine();
+//
+//                            FoodAndDrinkFileHandler.updateDishInFile(dishToEdit, newDishName, newDishPrice);
+//                            System.out.println("Đã cập nhật món và ghi lại vào file TXT.");
+//                            break;
+
+                        default:
+                            System.out.println("Lựa chọn không hợp lệ. Vui lòng chọn a, b, hoặc c.");
+                            break;
+                    }
+                    break;
+
+                case 2:
 
                     ReadExcelFile readExcel = new ReadExcelFile();
                     candidates = readExcel.readExcelFile();
                     break;
-                case 2:
+                case 3:
                     System.out.println("=================================================================================================================");
                     System.out.println("ĐANG LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG. XIN VUI LÒNG CHỜ ĐỢI....");
 
@@ -94,7 +144,7 @@ public class AdminMenu {
                     System.out.println("=================================================================================================================");
                     filteredCandidates = FilterbyRegex.filterCandidates(candidates);
                     break;
-                case 3:
+                case 4:
 
                     System.out.println("=================================================================================================================");
                     System.out.println("ĐANG LỌC HỒ SƠ ỨNG VIÊN TỰ ĐỘNG THEO THỨ TỰ ƯU TIÊN...");
@@ -138,7 +188,6 @@ public class AdminMenu {
                         waiterList.add(newWaiterName);
 
 
-
                         // Chuyển List trở lại thành mảng String[]
                         String[] nameWaiterNewArray = waiterList.toArray(new String[0]);
 
@@ -156,7 +205,7 @@ public class AdminMenu {
 
 
                     break;
-                case 4:
+                case 5:
                     System.out.println("Dữ liệu đang được đọc............");
                     // Quá trình "chờ ảo" (fake waiting)
                     try {
@@ -169,7 +218,7 @@ public class AdminMenu {
                     ReadOrderRequestsDataFromFileTxt.readOrderRequestsDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     System.out.println("Dữ liệu đã được đọc xong!");
                     break;
-                case 5:
+                case 6:
 
                     // Hiển thị dữ liệu đã đọc từ file
 
@@ -186,7 +235,7 @@ public class AdminMenu {
                     System.out.println("Dữ liệu đã đọc từ file văn bản:");
                     DisplayDataFromFileTxt.displayDataFromFileTxt(clientNames, drinkNames, moneyNames);
                     break;
-                case 6:
+                case 7:
 
                     System.out.println("======================================================================================");
                     System.out.println("DANH SÁCH NHỮNG KHÁCH HÀNG ĐANG GỌI MÓN HIỆN TẠI, TRIỆU TẬP NHÂN VIÊN ĐỂ PHỤC VỤ HỌ!!");
@@ -221,14 +270,14 @@ public class AdminMenu {
                     System.out.println("#############################################################################################");
 
                     break;
-                case 7:
+                case 8:
 
                     String fileNameBInary = "D:\\CodeGym\\Module 2\\ObjectPoolExample-0beea55077ca17fe958735feb1a9ba178dcaffd1\\ObjectPool\\src\\resources\\binaryFileVenue.txt";
-                    RevenueWritertoBinaryFile.writeRevenueToBinaryFile(moneyNames,fileNameBInary);
+                    RevenueWritertoBinaryFile.writeRevenueToBinaryFile(moneyNames, fileNameBInary);
 //                    ReaderRevenue.readRevenueFromBinaryFile(fileNameBInary);
                     break;
 
-                case 8:
+                case 9:
 
                     System.out.println("Đang xuất hoá đơn, vui lòng chờ trong giây lát... \n");
 
@@ -249,7 +298,6 @@ public class AdminMenu {
                     }
 
 
-
                     System.out.println("Đã in xong hoá đơn, hãy đưa cho khách hàng để yêu cầu khách thanh toán!!!");
 
 
@@ -258,13 +306,13 @@ public class AdminMenu {
                     running = false;    // hàm khiến chương trình chạy mãi không ngừng để hiện lại menu
                     break;
 
+                case 10: //duoi nhan vien
+                    break;
 
-
-                case 9:   //da thoát chương trình, phuong thuc nay khong cần thiết
+                case 11:   //da thoát chương trình, phuong thuc nay khong cần thiết
                     // Thoát chương trình
                     System.out.println("Thoát chương trình...");
                     running = false;
-
 
 
                     break;
@@ -280,6 +328,7 @@ public class AdminMenu {
         }
         scanner.close();  // Đóng Scanner khi kết thúc
     }
+
     // Setter để cập nhật nameWaiter
     public static void setNameWaiter(String[] newNameWaiter) {
         nameWaiter = newNameWaiter;
@@ -290,6 +339,31 @@ public class AdminMenu {
         return nameWaiter;
     }
 
+    private List<Observer> observers = new ArrayList<>();
+
+    @Override
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String newDrink) {
+        for (Observer observer : observers) {
+            observer.update(newDrink);
+        }
+    }
+
+
+
+    public void addNewDrink(String newDrink) {
+        System.out.println("Admin đã thêm đồ uống mới: " + newDrink);
+        notifyObservers(newDrink); // Thông báo cho tất cả các khách hàng về đồ uống mới
+    }
 
 }
 

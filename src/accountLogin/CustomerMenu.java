@@ -1,13 +1,14 @@
 package accountLogin;
 
 import model.Candidate_forthisJob;
+import observer.Observer;
 import service.WaiterPool;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class CustomerMenu {
+public class CustomerMenu implements Observer {
 
     public static final int NUM_OF_CLIENT = 7;                                                 // số lượng client tối đa được vào cửa tiệm để gọi món
     static List<Candidate_forthisJob> candidates;
@@ -54,5 +55,10 @@ public class CustomerMenu {
                          break;
             }
         }
+    }
+
+    @Override
+    public void update(String newDrink) {
+        System.out.println("Thông báo: Đã có đồ uống mới: - " + newDrink + "! Hãy thử ngay!");
     }
 }

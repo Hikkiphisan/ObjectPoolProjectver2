@@ -44,7 +44,7 @@ public class AppOrderDrinkfromCodeGym {
         scanner = new Scanner(System.in);
 
         // Mở menu chính để chọn đăng nhập
-        System.out.println("======= APP QUẢN LÝ QUÁN CÀ PHÊ CODEGYM =======");
+        System.out.println("======= APP CODEGYM COFFEE =======");
         System.out.println("1. Đăng nhập Admin");
         System.out.println("2. Đăng nhập Khách hàng");
         System.out.print("Chọn một tùy chọn (1-2): ");

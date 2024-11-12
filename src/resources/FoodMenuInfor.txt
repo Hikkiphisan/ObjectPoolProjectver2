@@ -1,0 +1,6 @@
+1, Bánh Chuối, 29000
+2, Phô Mai Chanh Dây, 29000
+3, Phô Mai Cà Phê, 29000
+4, Tiramisu, 35000
+5, Mousse Đào, 35000
+6, Phô Mai Caramel, 35000

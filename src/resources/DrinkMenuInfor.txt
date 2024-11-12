@@ -1,0 +1,11 @@
+1, Phin Sữa Đá, S, 29000
+2, Phin Sữa Đá, M, 32000
+3, Phin Sữa Nóng, M, 29000
+4, Latte, S, 65000
+5, Latte, M, 70000
+6, Tắc Đá Viên, M, 65000
+7, Trà Thạch Đào, L, 59000
+8, Chanh Đá Viên, M, 55000
+9, Cookie & Cream, L, 69000
+10, Capuchino, S, 99000
+11, Caramel Phin Freeze, M, 69000
