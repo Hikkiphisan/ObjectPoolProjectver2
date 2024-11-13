@@ -59,14 +59,10 @@ public class WaiterPool {
 
     private WaiterInServer createWaiter() {
 
-
-
-
         String[] nameWaiternewArray = {
                 "Trần Minh Trí", "Nguyễn Đức Thắng", "Lê Tuấn Dũng", "Đào Văn Huy Hưng",
                 "Hoàng Minh Nhật", "Thành", "Phí Hữu Lộc", "Trần Quang Huy"
         };
-
 
 
         int index = count.incrementAndGet() - 1;  // Giả sử count là một AtomicInteger, giúp đếm số nhân viên

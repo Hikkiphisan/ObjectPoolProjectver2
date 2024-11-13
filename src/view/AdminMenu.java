@@ -74,7 +74,7 @@ public class AdminMenu implements Subject {
                         e.printStackTrace();
                     }
                     System.out.println("\u001B[31m===================================================================================\u001B[0m");
-                    System.out.println("\u001B[31m[ALERT!] QUÁN HIỆN NAY CHƯA ĐỦ NHÂN VIÊN, KHÔNG THỂ KINH DOANH, HÃY TUYỂN THÊM NHÂN VIÊN!!!!\u001B[0m");
+                    System.out.println("\u001B[31m[ALERT!] QUÁN HIỆN NAY CHƯA ĐỦ NHÂN VIÊN, CHƯA ĐỦ SỐ LƯỢNG MÓN ĂN, KHÔNG THỂ KINH DOANH, HÃY TUYỂN THÊM NHÂN VIÊN!!!!\u001B[0m");
                     System.out.println("\u001B[31m===================================================================================\u001B[0m");
                     break;
                 case 1:

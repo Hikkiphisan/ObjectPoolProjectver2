@@ -68,6 +68,11 @@ public class CustomerMenu implements CustomerObserver {
         }
     }
 
+
+
+
+
+
     @Override
     public void update(String newDrink) {
         System.out.println("==============================================================================");
@@ -76,3 +81,14 @@ public class CustomerMenu implements CustomerObserver {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
